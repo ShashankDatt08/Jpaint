@@ -17,11 +17,11 @@ import view.interfaces.IUndoable;
 public class PaintCanvas extends JComponent implements IUndoable {
 
 	private List<Rectangle> rectangle;
-    private List<Rectangle> removed;
+    private Rectangle removed;
 
 	public PaintCanvas() {
 		rectangle = new ArrayList<>();
-		removed = new ArrayList<>();
+		removed = new Rectangle();
         
     }
 
@@ -29,20 +29,29 @@ public class PaintCanvas extends JComponent implements IUndoable {
 		rectangle.add(new Rectangle(x, y, width, height));
 		repaint();
 	}
+		
+	private void addRect(int i) {
+		rectangle.remove(i);
+		repaint();
+	}
+	
+	private void removeRect(Rectangle rect) {
+		rectangle.add(rect);
+		repaint();
+	}
+	
 	
 	@Override
 	public void undo() {
 		if (!rectangle.isEmpty()) {
-			removed.add(rectangle.remove(rectangle.size() - 1));
-            repaint();
+			addRect(rectangle.size() -1 );
         }		
 	}
 
 	@Override
 	public void redo() {
 		if (!removed.isEmpty()) {
-			rectangle.add(removed.remove(removed.size() - 1));
-			 repaint();
+			//removeRect((Rectangle) rectangle);
 	        }		
 	}
 	
