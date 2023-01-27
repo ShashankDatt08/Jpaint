@@ -30,12 +30,12 @@ public class PaintCanvas extends JComponent implements IUndoable {
 		repaint();
 	}
 		
-	private void addRect(int i) {
+	private void removeRect(int i) {
 		rectangle.remove(i);
 		repaint();
 	}
 	
-	private void removeRect(Rectangle rect) {
+	private void addRect(Rectangle rect) {
 		rectangle.add(rect);
 		repaint();
 	}
@@ -44,14 +44,15 @@ public class PaintCanvas extends JComponent implements IUndoable {
 	@Override
 	public void undo() {
 		if (!rectangle.isEmpty()) {
-			addRect(rectangle.size() -1 );
+			removeRect(rectangle.size() -1 );
+			rectangle.add(removed);
         }		
 	}
 
 	@Override
 	public void redo() {
 		if (!removed.isEmpty()) {
-			//removeRect((Rectangle) rectangle);
+			//addRect(removed);
 	        }		
 	}
 	
@@ -59,7 +60,7 @@ public class PaintCanvas extends JComponent implements IUndoable {
 	public void paint(Graphics g) {
 		Graphics2D graphics2d = (Graphics2D) g;
 		for (Rectangle recta : rectangle) {
-			g.drawRect(recta.x, recta.y, recta.width, recta.height);
+			g.fillRect(recta.x, recta.y, recta.width, recta.height);
 			URCommand.add(this);
 		}
 	    
