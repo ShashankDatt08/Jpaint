@@ -1,6 +1,5 @@
 package view;
 
-import view.interfaces.IURCommand;
 
 public enum EventName {
 	CHOOSE_SHAPE{

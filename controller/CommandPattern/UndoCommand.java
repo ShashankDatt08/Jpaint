@@ -1,8 +1,6 @@
 package controller.CommandPattern;
 
-import view.interfaces.IEventCallback;
-
-public class UndoCommand implements IEventCallback {
+public class UndoCommand implements ICommandPattern {
 
     @Override
     public void run() {

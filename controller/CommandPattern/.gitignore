@@ -1,0 +1,6 @@
+/ICommandPattern.class
+/RedoCommand.class
+/URCommand.class
+/UndoCommand.class
+/ICommand.class
+/CommandHistory.class

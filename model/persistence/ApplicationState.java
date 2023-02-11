@@ -1,9 +1,10 @@
 package model.persistence;
 
+import model.MouseMode;
 import model.ShapeColor;
+import model.ShapeConfiguration;
 import model.ShapeShadingType;
 import model.ShapeType;
-import model.MouseMode;
 import model.dialogs.DialogProvider;
 import model.interfaces.IApplicationState;
 import model.interfaces.IDialogProvider;
@@ -81,5 +82,9 @@ public class ApplicationState implements IApplicationState {
         activeSecondaryColor = ShapeColor.GREEN;
         activeShapeShadingType = ShapeShadingType.FILLED_IN;
         activeMouseMode = MouseMode.DRAW;
+    
+    }
+    public ShapeConfiguration getCurrentShapeConfiguration() {
+        return new ShapeConfiguration(getActivePrimaryColor(), getActiveSecondaryColor(),getActiveShapeType(), getActiveShapeShadingType());
     }
 }

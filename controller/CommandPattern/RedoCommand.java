@@ -1,9 +1,6 @@
 package controller.CommandPattern;
 
-import view.interfaces.IEventCallback;
-import view.interfaces.IURCommand;
-
-public class RedoCommand implements IEventCallback {
+public class RedoCommand implements ICommandPattern {
 
     @Override
     public void run() {
