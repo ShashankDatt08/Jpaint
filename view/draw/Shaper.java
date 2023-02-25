@@ -21,7 +21,7 @@ public class Shaper implements ICheck {
     @Override
     public void update() {
         clearCanvas();
-        IIteratorList iteratorList = shapeList.getIterator();
+        IIteratorList iteratorList = shapeList.getIteratorList();
         while (iteratorList.Next()) {
             iteratorList.obtainNext().draw();
         }

@@ -45,20 +45,12 @@ public class ShapeList implements IMatter {
 		createShape.clear();
 	}
 
-	public String toString() {
-		String s = "";
-		for (CreateShape a : createShape) {
-			s = s + a.toString() + ", ";
-		}
-		return s;
+	public IIteratorList getIteratorList() {
+		return new ShapeListIterator();
 	}
 
 	public int getSize() {
 		return size;
-	}
-
-	public IIteratorList getIterator() {
-		return new ShapeListIterator();
 	}
 
 	public boolean isEmpty() {

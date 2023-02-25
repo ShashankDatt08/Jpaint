@@ -15,7 +15,7 @@ public class MoveShapes implements ICommandPattern, IUndoable {
 	private ShapeList movingShapes = ShapeListManager.getMovingShapeList();
 
 	public MoveShapes(Point end) {
-		IIteratorList iterator = selectedShapes.getIterator();
+		IIteratorList iterator = selectedShapes.getIteratorList();
 		while (iterator.Next()) {
 			CreateShape createShape = iterator.obtainNext();
 			CreateShape createShapeNew = createShape.createShape();
@@ -30,11 +30,11 @@ public class MoveShapes implements ICommandPattern, IUndoable {
 
 	@Override
 	public void run() {
-		IIteratorList iteratorList = selectedShapes.getIterator();
+		IIteratorList iteratorList = selectedShapes.getIteratorList();
 		while (iteratorList.Next()) {
 			shapeList.removeShape(iteratorList.obtainNext());
 		}
-		IIteratorList iteratorList1 = movingShapes.getIterator();
+		IIteratorList iteratorList1 = movingShapes.getIteratorList();
 		while (iteratorList1.Next()) {
 			shapeList.addShape(iteratorList1.obtainNext());
 		}
@@ -43,11 +43,11 @@ public class MoveShapes implements ICommandPattern, IUndoable {
 
 	@Override
 	public void undo() {
-		IIteratorList iteratorList = movingShapes.getIterator();
+		IIteratorList iteratorList = movingShapes.getIteratorList();
 		while (iteratorList.Next()) {
 			shapeList.removeShape(iteratorList.obtainNext());
 		}
-		IIteratorList iteratorList1 = selectedShapes.getIterator();
+		IIteratorList iteratorList1 = selectedShapes.getIteratorList();
 		while (iteratorList1.Next()) {
 			shapeList.addShape(iteratorList1.obtainNext());
 		}
@@ -55,11 +55,11 @@ public class MoveShapes implements ICommandPattern, IUndoable {
 
 	@Override
 	public void redo() {
-		IIteratorList iteratorList = selectedShapes.getIterator();
+		IIteratorList iteratorList = selectedShapes.getIteratorList();
 		while (iteratorList.Next()) {
 			shapeList.removeShape(iteratorList.obtainNext());
 		}
-		IIteratorList iteratorList1 = movingShapes.getIterator();
+		IIteratorList iteratorList1 = movingShapes.getIteratorList();
 		while (iteratorList1.Next()) {
 			shapeList.addShape(iteratorList1.obtainNext());
 		}

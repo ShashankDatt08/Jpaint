@@ -6,3 +6,7 @@
 /Collision.class
 /Command.class
 /DrawShape.class
+/CopyCommand.class
+/PasteShape.class
+/DeleteShape.class
+/CopyShape.class
