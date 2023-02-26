@@ -1,7 +1,5 @@
 package view.commands;
 
-import java.util.ArrayList;
-
 import controller.Point;
 import controller.CommandPattern.ICommandPattern;
 import model.ShapeList;
@@ -29,6 +27,11 @@ public class SelectShapes implements ICommandPattern {
 			if (Collision.isCollision(createShape, startPoint, endPoint)) {
 				selectedShape.addShape(createShape);
 			}
+			IIteratorList iterator = selectedShape.getIteratorList();
+			while (iterator.Next()) {
+				shapeList.add(iterator.obtainNext());
+			}
+
 		}
 	}
 }

@@ -29,6 +29,12 @@ public class ShapeList implements IMatter {
 		size++;
 		alert();
 	}
+	
+	public void add(CreateShape shape) {
+		this.createShape.add(shape);
+		size++;
+		alertOutline();
+	}
 
 	@Override
 	public void cutObserver(ICheck observer) {
@@ -38,6 +44,12 @@ public class ShapeList implements IMatter {
 	private void alert() {
 		for (ICheck iCheck : check) {
 			iCheck.update();
+		}
+	}
+	
+	private void alertOutline() {
+		for (ICheck iCheck : check) {
+			iCheck.updateOutline();
 		}
 	}
 

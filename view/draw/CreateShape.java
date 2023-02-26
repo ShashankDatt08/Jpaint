@@ -34,6 +34,8 @@ public abstract class CreateShape {
 	}
 
 	public abstract void draw();
+	
+	public abstract void outlineSelect();
 
 	public abstract CreateShape createShape();
 

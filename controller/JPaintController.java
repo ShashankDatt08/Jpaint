@@ -5,6 +5,7 @@ import controller.CommandPattern.UndoCommand;
 import model.interfaces.IApplicationState;
 import view.EventName;
 import view.commands.CopyShape;
+import view.commands.DeleteShape;
 import view.commands.PasteShape;
 import view.interfaces.IUiModule;
 
@@ -32,6 +33,7 @@ public class JPaintController implements IJPaintController {
         uiModule.addEvent(EventName.REDO, () ->new RedoCommand().run());
         uiModule.addEvent(EventName.COPY, () -> new CopyShape().run());
         uiModule.addEvent(EventName.PASTE, () -> new PasteShape().run());
+        uiModule.addEvent(EventName.DELETE, () -> new DeleteShape().run());
 
     }
 }
