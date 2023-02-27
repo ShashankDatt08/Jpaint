@@ -33,5 +33,19 @@ Professor: Jeffrey Sharpe
 - Redo:
      The last Removed or moved will be restored back when the redo button is used.
      
+#Sprint 3
+ Copy:
+  Adds selected shapes to the “clipboard”
+ Paste:
+  Pastes the copied shape with (200,70) so that it will be visible and wont overlap with original shape.
+ Delete:
+  Deletes the selected shape with undo and redo implemented for this functionality.
+
+Design Pattern:
+  Observer Patter : Shaper is implementing Observer pattern 
+  Abstract factory Pattern: IShape is implementing Abstract factory pattern
+  Stratergy Pattern: IShapeShading type class implements Stratergy pattern
+  Command Pattern
+     
 Github Repo Link:
 https://github.com/ShashankDatt08/privatejpaint
