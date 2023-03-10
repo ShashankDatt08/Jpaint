@@ -15,11 +15,7 @@ public class Triangle extends CreateShape {
 
 	private ShapeColorMap colorMap = ShapeColorMap.getInstance();
 
-	@Override
-	public void draw() {
-		strategy.draw(this);
-	}
-
+	
 	@Override
 	public CreateShape createShape() {
 		return new Triangle(new ShapeInfo(new Point(this.startPoint.getX(), this.startPoint.getY()),
@@ -28,6 +24,42 @@ public class Triangle extends CreateShape {
 						this.config.getShapeType(), this.config.getShadingType())),
 				this.paintCanvas);
 	}
+	
+	@Override
+	public void draw() {
+		switch (this.shadingType) {
+		case FILLED_IN:
+			int[] x = new int[] { this.getStartPoint().getX(), this.getStartPoint().getX(), this.getEndPoint().getX() };
+			int[] y = new int[] { this.getStartPoint().getY(), this.getEndPoint().getY(), this.getEndPoint().getY() };
+			Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
+			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.fillPolygon(x, y, 3);
+			break;
+		case OUTLINE:
+			int[] a = new int[] { this.getStartPoint().getX(), this.getStartPoint().getX(),
+					this.getEndPoint().getX() };
+			int[] b = new int[] { this.getStartPoint().getY(), this.getEndPoint().getY(),
+					this.getEndPoint().getY() };
+			Graphics2D graphicss2D = this.getPaintCanvas().getGraphics2D();
+			graphicss2D.setStroke(new BasicStroke(5));
+			graphicss2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphicss2D.drawPolygon(a, b, 3);
+			break;
+		case OUTLINE_AND_FILLED_IN:
+			int[] c = new int[] { this.getStartPoint().getX(), this.getStartPoint().getX(),
+					this.getEndPoint().getX() };
+			int[] d = new int[] { this.getStartPoint().getY(), this.getEndPoint().getY(),
+					this.getEndPoint().getY() };
+			Graphics2D graphicsss2D = this.getPaintCanvas().getGraphics2D();
+			graphicsss2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphicsss2D.fillPolygon(c, d, 3);
+			graphicsss2D.setStroke(new BasicStroke(5));
+			graphicsss2D.setColor(colorMap.get(this.getSecondaryColor()));
+			graphicsss2D.drawPolygon(c, d, 3);
+		}
+			
+	}
+
 
 	@Override
 	public void outlineSelect() {

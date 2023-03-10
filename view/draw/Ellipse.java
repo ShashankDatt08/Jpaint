@@ -21,10 +21,36 @@ public class Ellipse extends CreateShape {
 						this.config.getShapeType(), this.config.getShadingType())),
 				this.paintCanvas);
 	}
-
+	
 	@Override
 	public void draw() {
-		strategy.draw(this);
+		
+		switch(this.shadingType) {
+		case FILLED_IN:
+			Calculations calc = new Calculations(this.getStartPoint(), this.getEndPoint());
+			Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
+			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.fillOval(calc.getX(), calc.getY(), calc.getx1(), calc.gety1());
+			break;
+		case OUTLINE:
+			Calculations calculation = new Calculations(this.getStartPoint(), this.getEndPoint());
+			Graphics2D graphicss2D = this.getPaintCanvas().getGraphics2D();
+			graphicss2D.setStroke(new BasicStroke(5));
+			graphicss2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphicss2D.drawOval(calculation.getX(), calculation.getY(), calculation.getx1(), calculation.gety1());
+			break;
+		case OUTLINE_AND_FILLED_IN:
+			Calculations calculations = new Calculations(this.getStartPoint(), this.getEndPoint());
+			Graphics2D graphicssss2D = this.getPaintCanvas().getGraphics2D();
+			graphicssss2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphicssss2D.fillOval(calculations.getX(), calculations.getY(), calculations.getx1(), calculations.gety1());
+			graphicssss2D.setStroke(new BasicStroke(5));
+			graphicssss2D.setColor(colorMap.get(this.getSecondaryColor()));
+			graphicssss2D.drawOval(calculations.getX(), calculations.getY(), calculations.getx1(), calculations.gety1());
+			break;
+		 default:
+             throw new Error("Error in drawing shape.");
+		}
 	}
 	
 	@Override

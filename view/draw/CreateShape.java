@@ -19,7 +19,6 @@ public abstract class CreateShape {
 	public PaintCanvas paintCanvas;
 	public ShapeShadingType shadingType;
 	public ShapeColor primaryColor;
-	StrategyStratergy strategyStratergy = new StrategyStratergy();
 
 	public CreateShape(ShapeInfo shapeInfo, PaintCanvas paintCanvas) {
 		this.startPoint = shapeInfo.getStart();
@@ -30,7 +29,6 @@ public abstract class CreateShape {
 		this.paintCanvas = paintCanvas;
 		this.secondaryColor = shapeInfo.getShapeConfiguration().getActiveSecondaryColor();
 		this.primaryColor = shapeInfo.getShapeConfiguration().getActivePrimaryColor();
-		strategy = strategyStratergy.createStrategy(shadingType);
 	}
 
 	public abstract void draw();

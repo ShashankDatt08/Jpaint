@@ -12,6 +12,8 @@ public class ShapeList implements IMatter {
 	private ArrayList<CreateShape> createShape = new ArrayList<CreateShape>();
 	private ArrayList<ICheck> check = new ArrayList<>();
 	private int size;
+	private ArrayList<CreateShape> shapes = new ArrayList<CreateShape>();
+
 
 	public void removeShape(CreateShape shape) {
 		this.createShape.remove(shape);
@@ -31,8 +33,8 @@ public class ShapeList implements IMatter {
 	}
 	
 	public void add(CreateShape shape) {
-		this.createShape.add(shape);
-		size++;
+		this.shapes.add(shape);
+		//size++;
 		alertOutline();
 	}
 
