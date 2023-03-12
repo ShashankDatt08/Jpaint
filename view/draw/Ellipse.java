@@ -66,6 +66,18 @@ public class Ellipse extends CreateShape {
 	    graphics2D.drawOval(x, y, w, h);
 		
 	}
+
+	@Override
+	public void flipShape() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void rotateShape() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

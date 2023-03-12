@@ -11,3 +11,6 @@
 /DeleteShape.class
 /CopyShape.class
 /GroupCommand.class
+/UngroupCommand.class
+/FlipCommand.class
+/RotateShape.class

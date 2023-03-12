@@ -77,4 +77,8 @@ public abstract class CreateShape {
 	public void setEndPoint(Point end) {
 		this.endPoint = end;
 	}
+
+	public abstract void flipShape();
+
+	public abstract void rotateShape();
 }

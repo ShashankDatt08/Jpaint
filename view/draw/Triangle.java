@@ -73,4 +73,16 @@ public class Triangle extends CreateShape {
 		graphics2D.drawPolygon(x, y, z);
 	}
 
+	@Override
+	public void flipShape() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void rotateShape() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

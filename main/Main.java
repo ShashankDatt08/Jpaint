@@ -20,7 +20,7 @@ public class Main {
 		IUiModule uiModule = new Gui(guiWindow);
 		ApplicationState appState = new ApplicationState(uiModule);
 		click Click = new click(appState, paintCanvas);
-		IJPaintController controller = new JPaintController(uiModule, appState,paintCanvas.getGraphics2D());
+		IJPaintController controller = new JPaintController(uiModule, appState);
 		controller.setup();
 		paintCanvas.addMouseListener(Click);
 		Shaper shaper = new Shaper(paintCanvas);

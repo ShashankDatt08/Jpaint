@@ -35,11 +35,29 @@ public class Shaper implements ICheck {
 			iteratorList.obtainNext().outlineSelect();
 		}
 	}
+	@Override
+	public void flipShape() {
+		IIteratorList iteratorList = selectedList.getIteratorList();
+		while (iteratorList.Next()) {
+			iteratorList.obtainNext().flipShape();
+		}		
+	}
 
+	@Override
+	public void rotateShape() {
+		IIteratorList iteratorList = selectedList.getIteratorList();
+		while (iteratorList.Next()) {
+			iteratorList.obtainNext().rotateShape();
+		}			
+	}
+	
+	
 	private void clearCanvas() {
 		Graphics2D graphics2D = paintCanvas.getGraphics2D();
 		graphics2D.setColor(colorMap.get(ShapeColor.WHITE));
 		graphics2D.fillRect(0, 0, 1200, 800);
 	}
+
+
 
 }
