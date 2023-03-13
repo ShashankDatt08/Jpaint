@@ -12,7 +12,6 @@ public class Ellipse extends CreateShape {
 	public Ellipse(ShapeInfo info, PaintCanvas paintCanvas) {
 		super(info, paintCanvas);
 	}
-	private ShapeColorMap colorMap = ShapeColorMap.getInstance();
 
 	public CreateShape createShape() {
 		return new Ellipse(new ShapeInfo(new Point(this.startPoint.getX(), this.startPoint.getY()),
@@ -29,19 +28,19 @@ public class Ellipse extends CreateShape {
 		switch(this.shadingType) {
 		case FILLED_IN:
 			
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillOval(calc.getX(), calc.getY(), calc.getx1(), calc.gety1());
 			break;
 		case OUTLINE:
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawOval(calc.getX(), calc.getY(), calc.getx1(), calc.gety1());
 			break;
 		case OUTLINE_AND_FILLED_IN:
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillOval(calc.getX(), calc.getY(), calc.getx1(), calc.gety1());
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawOval(calc.getX(), calc.getY(), calc.getx1(), calc.gety1());
 			break;
 		 default:
@@ -64,7 +63,6 @@ public class Ellipse extends CreateShape {
 	@Override
 	public void flipShape() {
 		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
-		graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
 		Calculations calc = new Calculations(this.getStartPoint(), this.getEndPoint());
 		int x = calc.getX();
 		int y = calc.getY();
@@ -73,19 +71,19 @@ public class Ellipse extends CreateShape {
 		y = temp;	
 		switch(this.shadingType) {
 		case FILLED_IN:		
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillOval(x,y, calc.getx1(), calc.gety1());
 			break;
 		case OUTLINE:
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawOval(x,y, calc.getx1(), calc.gety1());
 			break;
 		case OUTLINE_AND_FILLED_IN:
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillOval(x,y, calc.getx1(), calc.gety1());
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawOval(x,y, calc.getx1(), calc.gety1());
 			break;
 		 default:
@@ -101,19 +99,19 @@ public class Ellipse extends CreateShape {
 
 		switch(this.shadingType) {
 		case FILLED_IN:			
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillOval(calc.getX(), calc.getY(), calc.getx1(), calc.gety1());
 			break;
 		case OUTLINE:
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawOval(calc.getX(), calc.getY(), calc.getx1(), calc.gety1());
 			break;
 		case OUTLINE_AND_FILLED_IN:
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillOval(calc.getX(), calc.getY(), calc.getx1(), calc.gety1());
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawOval(calc.getX(), calc.getY(), calc.getx1(), calc.gety1());
 			break;
 		 default:

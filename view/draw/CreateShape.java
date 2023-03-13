@@ -13,7 +13,7 @@ public abstract class CreateShape {
 	public Point startPoint;
 	public Point endPoint;
 	public IShapeShadingType strategy;
-	public Graphics2D graphics2d;
+	public Graphics2D graphics2D;
 	public ShapeColor secondaryColor;
 	public ShapeConfiguration config;
 	public PaintCanvas paintCanvas;
@@ -23,7 +23,7 @@ public abstract class CreateShape {
 	public CreateShape(ShapeInfo shapeInfo, PaintCanvas paintCanvas) {
 		this.startPoint = shapeInfo.getStart();
 		this.endPoint = shapeInfo.getEnd();
-		graphics2d = paintCanvas.getGraphics2D();
+		graphics2D = paintCanvas.getGraphics2D();
 		this.config = shapeInfo.getShapeConfiguration();
 		this.shadingType = shapeInfo.getShapeConfiguration().getShadingType();
 		this.paintCanvas = paintCanvas;
@@ -38,7 +38,7 @@ public abstract class CreateShape {
 	public abstract CreateShape createShape();
 
 	public Graphics2D getGraphics2d() {
-		return graphics2d;
+		return graphics2D;
 	}
 
 	public ShapeColor getSecondaryColor() {

@@ -1,6 +1,7 @@
 package view.draw;
 
 import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 import controller.Point;
@@ -13,7 +14,6 @@ public class Rectangle extends CreateShape {
 		super(info, paintCanvas);
 	}
 
-	private ShapeColorMap colorMap = ShapeColorMap.getInstance();
 
 	@Override
 	public CreateShape createShape() {
@@ -23,25 +23,27 @@ public class Rectangle extends CreateShape {
 						this.config.getShapeType(), this.config.getShadingType())),
 				this.paintCanvas);
 	}
+	private Color colorMap = ShapeColorMap.getInstance(this.getPrimaryColor());
+
 
 	public void draw() {
 		Calculations calc = new Calculations(this.getStartPoint(), this.getEndPoint());
 		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
 		switch (this.shadingType) {
 		case FILLED_IN:			
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillRect(calc.getX(), calc.getY(), calc.getx1(), calc.gety1());
 			break;
 		case OUTLINE:
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawRect(calc.getX(), calc.getY(), calc.getx1(), calc.gety1());
 			break;
 		case OUTLINE_AND_FILLED_IN:
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillRect(calc.getX(), calc.getY(), calc.getx1(), calc.gety1());
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawRect(calc.getX(), calc.getY(), calc.getx1(), calc.gety1());
 			break;
 		default:
@@ -64,7 +66,7 @@ public class Rectangle extends CreateShape {
 
 	@Override
 	public void flipShape() {
-		Graphics2D graphics2d = this.getPaintCanvas().getGraphics2D();
+		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
 		int w = Math.abs(startPoint.getX() - endPoint.getX());
 		int h = Math.abs(startPoint.getY() - endPoint.getY());
 		int x = this.getStartPoint().getX();
@@ -74,19 +76,19 @@ public class Rectangle extends CreateShape {
 		y = temp;
 		switch(this.shadingType) {
 		case FILLED_IN:		
-			graphics2d.setColor(colorMap.get(this.getPrimaryColor()));
-			graphics2d.fillRect(x, y, w, h);
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
+			graphics2D.fillRect(x, y, w, h);
 			break;
 		case OUTLINE:
-			graphics2d.setColor(colorMap.get(this.getPrimaryColor()));
-			graphics2d.drawRect(x, y, w, h);
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
+			graphics2D.drawRect(x, y, w, h);
 			break;
 		case OUTLINE_AND_FILLED_IN:
-			graphics2d.setColor(colorMap.get(this.getPrimaryColor()));
-			graphics2d.fillRect(x, y, w, h);
-			graphics2d.setStroke(new BasicStroke(5));
-			graphics2d.setColor(colorMap.get(this.getSecondaryColor()));
-			graphics2d.drawRect(x, y, w, h);
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
+			graphics2D.fillRect(x, y, w, h);
+			graphics2D.setStroke(new BasicStroke(5));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
+			graphics2D.drawRect(x, y, w, h);
 			break;
 		default:
 			throw new Error("Error in flipping shape.");
@@ -104,6 +106,7 @@ public class Rectangle extends CreateShape {
 			int y = Math.min(startPoint.getY(), endPoint.getY());
 			int w = Math.abs(startPoint.getX() - endPoint.getX());
 			int h = Math.abs(startPoint.getY() - endPoint.getY());
+			graphics2d.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2d.fillRect(x, y, w, h);
 			break;
 		case OUTLINE:
@@ -111,6 +114,7 @@ public class Rectangle extends CreateShape {
 			int y1 = Math.min(startPoint.getY(), endPoint.getY());
 			int w1 = Math.abs(startPoint.getX() - endPoint.getX());
 			int h1 = Math.abs(startPoint.getY() - endPoint.getY());
+			graphics2d.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2d.drawRect(x1, y1, w1, h1);
 			break;
 		case OUTLINE_AND_FILLED_IN:
@@ -118,10 +122,10 @@ public class Rectangle extends CreateShape {
 			int y2 = Math.min(startPoint.getY(), endPoint.getY());
 			int w2 = Math.abs(startPoint.getX() - endPoint.getX());
 			int h2 = Math.abs(startPoint.getY() - endPoint.getY());
-			graphics2d.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2d.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2d.fillRect(x2, y2, w2, h2);
 			graphics2d.setStroke(new BasicStroke(5));
-			graphics2d.setColor(colorMap.get(this.getSecondaryColor()));
+			graphics2d.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2d.drawRect(x2, y2, w2, h2);
 			break;
 		default:

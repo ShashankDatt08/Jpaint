@@ -13,8 +13,6 @@ public class Pentagon extends CreateShape {
 		super(info, paintCanvas);
 	}
 
-	private ShapeColorMap colorMap = ShapeColorMap.getInstance();
-
 	@Override
 	public CreateShape createShape() {
 		return new Pentagon(new ShapeInfo(new Point(this.startPoint.getX(), this.startPoint.getY()),
@@ -35,18 +33,18 @@ public class Pentagon extends CreateShape {
 		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
 		switch (this.shadingType) {
 		case FILLED_IN:
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillPolygon(x1, y1, 5);
 			break;
 		case OUTLINE:
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawPolygon(x1, y1, 5);
 			break;
 		case OUTLINE_AND_FILLED_IN:
 			graphics2D.fillPolygon(x1, y1, 5);
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.drawPolygon(x1, y1, 5);
 			break;
 		default:
@@ -82,19 +80,19 @@ public class Pentagon extends CreateShape {
 		int[] y1 = new int[] { y - (h / 8), y + (h), y + (h), y - (h / 8), y - (h / 2) };
 		switch (this.shadingType) {
 		case FILLED_IN:
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillPolygon(x1, y1, 5);
 			break;
 		case OUTLINE:
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawPolygon(x1, y1, 5);
 			break;
 		case OUTLINE_AND_FILLED_IN:
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillPolygon(x1, y1, 5);
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawPolygon(x1, y1, 5);
 			break;
 		default:
@@ -115,18 +113,18 @@ public class Pentagon extends CreateShape {
 		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
 		switch (this.shadingType) {
 		case FILLED_IN:
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillPolygon(x1, y1, 5);
 			break;
 		case OUTLINE:
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawPolygon(x1, y1, 5);
 			break;
 		case OUTLINE_AND_FILLED_IN:
 			graphics2D.fillPolygon(x1, y1, 5);
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.drawPolygon(x1, y1, 5);
 			break;
 		default:

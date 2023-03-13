@@ -15,8 +15,6 @@ public class Text extends CreateShape {
 		super(info, paintCanvas);
 	}
 
-	private ShapeColorMap colorMap = ShapeColorMap.getInstance();
-
 	@Override
 	public CreateShape createShape() {
 		return new Text(new ShapeInfo(new Point(this.startPoint.getX(), this.startPoint.getY()),
@@ -37,19 +35,19 @@ public class Text extends CreateShape {
 		switch (this.shadingType) {
 		case FILLED_IN:
 			
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.drawString(enter, calc.getX(), calc.getY());
 			break;
 		case OUTLINE:
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawString(enter, x, y);
 			break;
 		case OUTLINE_AND_FILLED_IN:
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.drawString(enter, x, y);
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawString(enter, x, y);
 			break;
 		default:

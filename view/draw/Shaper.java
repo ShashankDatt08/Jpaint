@@ -1,5 +1,6 @@
 package view.draw;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 import model.ShapeColor;
@@ -13,7 +14,6 @@ public class Shaper implements ICheck {
 	private ShapeList shapeList = ShapeListManager.getShapeList();
 	private ShapeList selectedList = ShapeListManager.getSelectedShapeList();
 	private PaintCanvas paintCanvas;
-	private ShapeColorMap colorMap = ShapeColorMap.getInstance();
 
 	public Shaper(PaintCanvas paintCanvas) {
 		this.paintCanvas = paintCanvas;
@@ -54,7 +54,7 @@ public class Shaper implements ICheck {
 	
 	private void clearCanvas() {
 		Graphics2D graphics2D = paintCanvas.getGraphics2D();
-		graphics2D.setColor(colorMap.get(ShapeColor.WHITE));
+		graphics2D.setColor(Color.WHITE);
 		graphics2D.fillRect(0, 0, 1200, 800);
 	}
 

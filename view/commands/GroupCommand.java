@@ -48,8 +48,8 @@ public class GroupCommand implements ICommandPattern, IUndoable {
 		IIteratorList iteratorList = group.getIteratorList();
 		while (iteratorList.Next()) {
 			CreateShape shape = iteratorList.obtainNext();
-			shape.graphics2d.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0));
-			shape.graphics2d.drawRect(minX - padding / 2, minY - padding / 2, width, height);
+			shape.graphics2D.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0));
+			shape.graphics2D.drawRect(minX - padding / 2, minY - padding / 2, width, height);
 		}
 		URCommand.add(this);
 	}

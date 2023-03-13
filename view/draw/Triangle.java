@@ -13,8 +13,6 @@ public class Triangle extends CreateShape {
 		super(info, paintCanvas);
 	}
 
-	private ShapeColorMap colorMap = ShapeColorMap.getInstance();
-
 	
 	@Override
 	public CreateShape createShape() {
@@ -32,19 +30,19 @@ public class Triangle extends CreateShape {
 		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
 		switch (this.shadingType) {
 		case FILLED_IN:		
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillPolygon(x, y, 3);
 			break;
 		case OUTLINE:
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawPolygon(x, y, 3);
 			break;
 		case OUTLINE_AND_FILLED_IN:
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillPolygon(x, y, 3);
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawPolygon(x, y, 3);
 			break;
 		default:
@@ -77,19 +75,19 @@ public class Triangle extends CreateShape {
 		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
 		switch (this.shadingType) {
 		case FILLED_IN:		
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillPolygon(x1, y1, 3);
 			break;
 		case OUTLINE:
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawPolygon(x1, y1, 3);
 			break;
 		case OUTLINE_AND_FILLED_IN:
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillPolygon(x1, y1, 3);
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawPolygon(x1, y1, 3);
 			break;
 		default:
@@ -106,19 +104,19 @@ public class Triangle extends CreateShape {
 		graphics2D.rotate(Math.toRadians(180), this.getStartPoint().getX(), this.getStartPoint().getY());	
 		switch (this.shadingType) {
 		case FILLED_IN:		
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillPolygon(x, y, 3);
 			break;
 		case OUTLINE:
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawPolygon(x, y, 3);
 			break;
 		case OUTLINE_AND_FILLED_IN:
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillPolygon(x, y, 3);
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawPolygon(x, y, 3);
 			break;
 		default:

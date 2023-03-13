@@ -13,8 +13,6 @@ public class ArcPie extends CreateShape {
 		super(info, paintCanvas);
 	}
 
-	private ShapeColorMap colorMap = ShapeColorMap.getInstance();
-
 	@Override
 	public CreateShape createShape() {
 		return new ArcPie(new ShapeInfo(new Point(this.startPoint.getX(), this.startPoint.getY()),
@@ -29,19 +27,19 @@ public class ArcPie extends CreateShape {
 		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
 		switch (this.shadingType) {
 		case FILLED_IN:
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillArc(calc.getX(), calc.getY(), calc.getx1(), calc.gety1(), -10, 45);
 			break;
 		case OUTLINE:
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawArc(calc.getX(), calc.getY(), calc.getx1(), calc.gety1(), -10, 45);
 			break;
 		case OUTLINE_AND_FILLED_IN:
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillRect(calc.getX(), calc.getY(), calc.getx1(), calc.gety1());
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawArc(calc.getX(), calc.getY(), calc.getx1(), calc.gety1(), -10, 45);
 			break;
 		default:
@@ -65,7 +63,7 @@ public class ArcPie extends CreateShape {
 	@Override
 	public void flipShape() {
 		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
-		graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+		graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 		int x = Math.min(startPoint.getX(), endPoint.getX());
 		int y = Math.min(startPoint.getY(), endPoint.getY());
 		int w = Math.abs(startPoint.getX() - endPoint.getX());
@@ -75,18 +73,18 @@ public class ArcPie extends CreateShape {
 		y = temp;
 		switch (this.shadingType) {
 		case FILLED_IN:		
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillArc(x, y, w, h, 240, -100);
 			break;
 		case OUTLINE:
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawArc(x, y, w, h, 240, -100);
 			break;
 		case OUTLINE_AND_FILLED_IN:
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillArc(x, y, w, h, 240, -100);
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
+			graphics2D.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawArc(x, y, w, h, 240, -100);
 			break;
 		default:
@@ -102,19 +100,19 @@ public class ArcPie extends CreateShape {
 		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
 		switch (this.shadingType) {
 		case FILLED_IN:
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2d.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillArc(calc.getX(), calc.getY(), calc.getx1(), calc.gety1(), -10, 45);
 			break;
 		case OUTLINE:
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2d.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawArc(calc.getX(), calc.getY(), calc.getx1(), calc.gety1(), -10, 45);
 			break;
 		case OUTLINE_AND_FILLED_IN:
-			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2d.setColor(ShapeColorMap.getInstance(this.primaryColor));
 			graphics2D.fillRect(calc.getX(), calc.getY(), calc.getx1(), calc.gety1());
 			graphics2D.setStroke(new BasicStroke(5));
-			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
+			graphics2d.setColor(ShapeColorMap.getInstance(this.secondaryColor));
 			graphics2D.drawArc(calc.getX(), calc.getY(), calc.getx1(), calc.gety1(), -10, 45);
 			break;
 		default:

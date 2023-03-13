@@ -27,9 +27,10 @@ public final class ShapeColorMap {
 
 	}
 
-	public static ShapeColorMap getInstance() {
-		return instance;
+	public static Color getInstance(ShapeColor color) {
+		return instance.get(color);
 	}
+		
 
 	public Color get(ShapeColor enumColor) {
 		return colorMap.get(enumColor);
