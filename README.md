@@ -40,12 +40,26 @@ Professor: Jeffrey Sharpe
   Pastes the copied shape with (200,70) so that it will be visible and wont overlap with original shape.
  Delete:
   Deletes the selected shape with undo and redo implemented for this functionality.
-
+  
+#Sprint 4
+  Group Command:
+    Clicking this button will cause all Selected shapes to operate as a group.
+    Shapes grouped together should be operated on as if they were one shape.
+    To select a grouped shape, any part of the invisible bounding box around the shapes in the group can be selected.
+  Ungroup Command:
+   Any selected shapes that are grouped shapes will no longer be grouped.
+    If a selected group is comprised of one or more groups, only the outer-most group is ungrouped
+  Undo
+    Undo functionality implemented for group and ungroup
+  Redo Group and Ungroup
+    Redo functionality implemented for group and ungroup
+    
 Design Pattern:
   Observer Patter : Shaper is implementing Observer pattern 
   Abstract factory Pattern: IShape is implementing Abstract factory pattern
+  Singleton Pattern: ShapeColorMap implements singleton pattern
   Stratergy Pattern: IShapeShading type class implements Stratergy pattern
-  Command Pattern
+  Command Pattern : DrawShape, SelectShape, MoveShape, CopyShape, PasteShape, GroupCommand, UngroupCommand, RotateShape, flipShape implements CommandPatter.
      
 Github Repo Link:
 https://github.com/ShashankDatt08/privatejpaint
