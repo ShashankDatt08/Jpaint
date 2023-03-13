@@ -105,7 +105,7 @@ public class Kite extends CreateShape {
 	@Override
 	public void rotateShape() {
 		Graphics2D graphics2d = this.getPaintCanvas().getGraphics2D();
-		graphics2d.rotate(Math.toRadians(70), this.getStartPoint().getX(), this.getStartPoint().getY());
+		graphics2d.rotate(Math.toRadians(180), this.getStartPoint().getX(), this.getStartPoint().getY());
 		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
 		int x = Math.min(startPoint.getX(), endPoint.getX());
 		int y = Math.min(startPoint.getY(), endPoint.getY());

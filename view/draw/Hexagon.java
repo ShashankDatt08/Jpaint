@@ -104,7 +104,7 @@ public class Hexagon extends CreateShape {
 	@Override
 	public void rotateShape() {
 		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
-		graphics2D.rotate(Math.toRadians(70), this.getStartPoint().getX(), this.getStartPoint().getY());
+		graphics2D.rotate(Math.toRadians(180), this.getStartPoint().getX(), this.getStartPoint().getY());
 		int x = Math.min(startPoint.getX(), endPoint.getX());
 		int y = Math.min(startPoint.getY(), endPoint.getY());
 		int w = Math.abs(startPoint.getX() - endPoint.getX());

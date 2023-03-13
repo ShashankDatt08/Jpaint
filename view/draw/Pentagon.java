@@ -103,7 +103,7 @@ public class Pentagon extends CreateShape {
 	@Override
 	public void rotateShape() {
 		Graphics2D graphics2d = this.getPaintCanvas().getGraphics2D();
-		graphics2d.rotate(Math.toRadians(900), this.getStartPoint().getX(), this.getStartPoint().getY());
+		graphics2d.rotate(Math.toRadians(180), this.getStartPoint().getX(), this.getStartPoint().getY());
 		int x = this.getStartPoint().getX();
 		int y = this.getStartPoint().getY();
 		int w = Math.abs(startPoint.getX() - endPoint.getX());

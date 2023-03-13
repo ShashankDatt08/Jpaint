@@ -50,7 +50,7 @@ public class ShapeList implements IMatter {
 	
 	public void add(CreateShape shape) {
 		this.shapes.add(shape);
-		//size++;
+		size++;
 		alertOutline();
 	}
 	
