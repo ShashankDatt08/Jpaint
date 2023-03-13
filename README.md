@@ -54,6 +54,17 @@ Professor: Jeffrey Sharpe
   Redo Group and Ungroup
     Redo functionality implemented for group and ungroup
     
+Extra Credit:
+1.  Implemented Rotate button : When shape is selected and user wish to rotate it, can use this and it rotates.
+2.  Implemented Flip button : When shape is selected and user wish to flip the shape, can use this and flip the shape to opposite side, In arc, line ,triangle you see     better flip than all same sided shape.
+3. New Shapes:
+  ArcPie
+  Kite
+  Pentagon
+  Hexagon
+  Text
+  Line
+    
 Design Pattern:
   Observer Patter : Shaper is implementing Observer pattern 
   Abstract factory Pattern: IShape is implementing Abstract factory pattern
