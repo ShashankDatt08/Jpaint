@@ -27,35 +27,29 @@ public class Triangle extends CreateShape {
 	
 	@Override
 	public void draw() {
+		int[] x = new int[] { this.getStartPoint().getX(), this.getStartPoint().getX(), this.getEndPoint().getX() };
+		int[] y = new int[] { this.getStartPoint().getY(), this.getEndPoint().getY(), this.getEndPoint().getY() };
+		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
 		switch (this.shadingType) {
-		case FILLED_IN:
-			int[] x = new int[] { this.getStartPoint().getX(), this.getStartPoint().getX(), this.getEndPoint().getX() };
-			int[] y = new int[] { this.getStartPoint().getY(), this.getEndPoint().getY(), this.getEndPoint().getY() };
-			Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
+		case FILLED_IN:		
 			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
 			graphics2D.fillPolygon(x, y, 3);
 			break;
 		case OUTLINE:
-			int[] a = new int[] { this.getStartPoint().getX(), this.getStartPoint().getX(),
-					this.getEndPoint().getX() };
-			int[] b = new int[] { this.getStartPoint().getY(), this.getEndPoint().getY(),
-					this.getEndPoint().getY() };
-			Graphics2D graphicss2D = this.getPaintCanvas().getGraphics2D();
-			graphicss2D.setStroke(new BasicStroke(5));
-			graphicss2D.setColor(colorMap.get(this.getPrimaryColor()));
-			graphicss2D.drawPolygon(a, b, 3);
+			graphics2D.setStroke(new BasicStroke(5));
+			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.drawPolygon(x, y, 3);
 			break;
 		case OUTLINE_AND_FILLED_IN:
-			int[] c = new int[] { this.getStartPoint().getX(), this.getStartPoint().getX(),
-					this.getEndPoint().getX() };
-			int[] d = new int[] { this.getStartPoint().getY(), this.getEndPoint().getY(),
-					this.getEndPoint().getY() };
-			Graphics2D graphicsss2D = this.getPaintCanvas().getGraphics2D();
-			graphicsss2D.setColor(colorMap.get(this.getPrimaryColor()));
-			graphicsss2D.fillPolygon(c, d, 3);
-			graphicsss2D.setStroke(new BasicStroke(5));
-			graphicsss2D.setColor(colorMap.get(this.getSecondaryColor()));
-			graphicsss2D.drawPolygon(c, d, 3);
+			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.fillPolygon(x, y, 3);
+			graphics2D.setStroke(new BasicStroke(5));
+			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
+			graphics2D.drawPolygon(x, y, 3);
+			break;
+		default:
+			throw new Error("Error in drawing shape.");
+
 		}
 			
 	}
@@ -67,22 +61,70 @@ public class Triangle extends CreateShape {
 		int y[] = { startPoint.getY(), endPoint.getY(), endPoint.getY() };
 		int z = 3;
 		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
-		float flo[] = { 6.0f };
-		graphics2D.setStroke(new BasicStroke(2.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 6.0f, flo, 0.0f));
-		graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+		graphics2D.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0));
 		graphics2D.drawPolygon(x, y, z);
 	}
 
 	@Override
 	public void flipShape() {
-		// TODO Auto-generated method stub
-		
+		int x = this.getStartPoint().getX();
+		int y =this.getStartPoint().getY();
+		int temp = x;
+		x = y;
+		y = temp;	
+		int[] x1 = new int[] { x, y, this.getEndPoint().getX() };
+		int[] y1 = new int[] { y, this.getEndPoint().getY(), this.getEndPoint().getY() };
+		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
+		switch (this.shadingType) {
+		case FILLED_IN:		
+			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.fillPolygon(x1, y1, 3);
+			break;
+		case OUTLINE:
+			graphics2D.setStroke(new BasicStroke(5));
+			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.drawPolygon(x1, y1, 3);
+			break;
+		case OUTLINE_AND_FILLED_IN:
+			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.fillPolygon(x1, y1, 3);
+			graphics2D.setStroke(new BasicStroke(5));
+			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
+			graphics2D.drawPolygon(x1, y1, 3);
+			break;
+		default:
+			throw new Error("Error in flipping shape.");
+
+		}
 	}
 
 	@Override
 	public void rotateShape() {
-		// TODO Auto-generated method stub
-		
+		int[] x = new int[] { this.getStartPoint().getX(), this.getStartPoint().getX(), this.getEndPoint().getX() };
+		int[] y = new int[] { this.getStartPoint().getY(), this.getEndPoint().getY(), this.getEndPoint().getY() };
+		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
+		graphics2D.rotate(Math.toRadians(180), this.getStartPoint().getX(), this.getStartPoint().getY());	
+		switch (this.shadingType) {
+		case FILLED_IN:		
+			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.fillPolygon(x, y, 3);
+			break;
+		case OUTLINE:
+			graphics2D.setStroke(new BasicStroke(5));
+			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.drawPolygon(x, y, 3);
+			break;
+		case OUTLINE_AND_FILLED_IN:
+			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
+			graphics2D.fillPolygon(x, y, 3);
+			graphics2D.setStroke(new BasicStroke(5));
+			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
+			graphics2D.drawPolygon(x, y, 3);
+			break;
+		default:
+			throw new Error("Error in rotating shape.");
+
+		}
 	}
 
 }

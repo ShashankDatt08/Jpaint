@@ -5,7 +5,7 @@ import controller.CommandPattern.ICommandPattern;
 import model.interfaces.IApplicationState;
 import model.persistence.ApplicationState;
 import view.gui.IMode;
-import view.gui.ModeStrat;
+import view.gui.Mode;
 import view.gui.PaintCanvas;
 
 public class Command {
@@ -15,13 +15,13 @@ public class Command {
 	public Command(ApplicationState applicationState) {
 		switch (applicationState.getActiveMouseMode()) {
 		case DRAW:
-			paintmode = ModeStrat.getDrawMode();
+			paintmode = Mode.getDrawMode();
 			break;
 		case SELECT:
-			paintmode = ModeStrat.getSelectMode();
+			paintmode = Mode.getSelectMode();
 			break;
 		case MOVE:
-			paintmode = ModeStrat.getMoveMode();
+			paintmode = Mode.getMoveMode();
 			break;
 
 		}

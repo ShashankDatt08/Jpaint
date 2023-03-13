@@ -1,7 +1,7 @@
 package view.gui;
 
 //static factory
-public class ModeStrat {
+public class Mode {
 	public static IMode getDrawMode() {
 		return new Drawing();
 	}

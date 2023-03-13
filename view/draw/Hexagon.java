@@ -7,9 +7,9 @@ import controller.Point;
 import model.ShapeConfiguration;
 import view.gui.PaintCanvas;
 
-public class ArcPie extends CreateShape {
+public class Hexagon extends CreateShape {
 
-	public ArcPie(ShapeInfo info, PaintCanvas paintCanvas) {
+	public Hexagon(ShapeInfo info, PaintCanvas paintCanvas) {
 		super(info, paintCanvas);
 	}
 
@@ -17,110 +17,122 @@ public class ArcPie extends CreateShape {
 
 	@Override
 	public CreateShape createShape() {
-		return new ArcPie(new ShapeInfo(new Point(this.startPoint.getX(), this.startPoint.getY()),
+		return new Hexagon(new ShapeInfo(new Point(this.startPoint.getX(), this.startPoint.getY()),
 				new Point(this.endPoint.getX(), this.endPoint.getY()),
 				new ShapeConfiguration(this.config.getActivePrimaryColor(), this.config.getActiveSecondaryColor(),
 						this.config.getShapeType(), this.config.getShadingType())),
 				this.paintCanvas);
 	}
 
+	@Override
 	public void draw() {
-		Calculations calc = new Calculations(this.getStartPoint(), this.getEndPoint());
+		int x = Math.min(startPoint.getX(), endPoint.getX());
+		int y = Math.min(startPoint.getY(), endPoint.getY());
+		int w = Math.abs(startPoint.getX() - endPoint.getX());
+		int h = Math.abs(startPoint.getY() - endPoint.getY());
+		int[] x1 = new int[] { x + w, x + (w / 2), x - (w / 2), x - w, x - (w / 2), x + (w / 2) };
+		int[] y1 = new int[] { y, y - h, y - h, y, y + h, y + h };
 		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
 		switch (this.shadingType) {
 		case FILLED_IN:
 			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
-			graphics2D.fillArc(calc.getX(), calc.getY(), calc.getx1(), calc.gety1(), -10, 45);
+			graphics2D.fillPolygon(x1, y1, 6);
 			break;
 		case OUTLINE:
 			graphics2D.setStroke(new BasicStroke(5));
 			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
-			graphics2D.drawArc(calc.getX(), calc.getY(), calc.getx1(), calc.gety1(), -10, 45);
+			graphics2D.drawPolygon(x1, y1, 6);
 			break;
 		case OUTLINE_AND_FILLED_IN:
 			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
-			graphics2D.fillRect(calc.getX(), calc.getY(), calc.getx1(), calc.gety1());
+			graphics2D.fillPolygon(x1, y1, 6);
 			graphics2D.setStroke(new BasicStroke(5));
 			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
-			graphics2D.drawArc(calc.getX(), calc.getY(), calc.getx1(), calc.gety1(), -10, 45);
+			graphics2D.drawPolygon(x1, y1, 6);
 			break;
 		default:
 			throw new Error("Error in drawing shape.");
-
 		}
 	}
 
 	@Override
 	public void outlineSelect() {
-		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
-		graphics2D.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[] { 9 }, 0));
 		int x = Math.min(startPoint.getX(), endPoint.getX());
 		int y = Math.min(startPoint.getY(), endPoint.getY());
 		int w = Math.abs(startPoint.getX() - endPoint.getX());
 		int h = Math.abs(startPoint.getY() - endPoint.getY());
-		graphics2D.drawArc(x, y, w, h, -10, 45);
-
+		int[] x1 = new int[] { x + w, x + (w / 2), x - (w / 2), x - w, x - (w / 2), x + (w / 2) };
+		int[] y1 = new int[] { y, y - h, y - h, y, y + h, y + h };
+		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
+		graphics2D.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[] { 9 }, 0));
+		graphics2D.drawPolygon(x1, y1, 6);
 	}
 
 	@Override
 	public void flipShape() {
 		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
-		graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
-		int x = Math.min(startPoint.getX(), endPoint.getX());
-		int y = Math.min(startPoint.getY(), endPoint.getY());
 		int w = Math.abs(startPoint.getX() - endPoint.getX());
 		int h = Math.abs(startPoint.getY() - endPoint.getY());
+		int x = this.getStartPoint().getX();
+		int y =this.getStartPoint().getY();
 		int temp = x;
 		x = y;
-		y = temp;
+		y = temp;	
+		int[] x1 = new int[] { x + w, x + (w / 2), x - (w / 2), x - w, x - (w / 2), x + (w / 2) };
+		int[] y1 = new int[] { y, y - h, y - h, y, y + h, y + h };
 		switch (this.shadingType) {
-		case FILLED_IN:		
+		case FILLED_IN:
 			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
-			graphics2D.fillArc(x, y, w, h, 240, -100);
+			graphics2D.fillPolygon(x1, y1, 6);
 			break;
 		case OUTLINE:
+			graphics2D.setStroke(new BasicStroke(5));
 			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
-			graphics2D.drawArc(x, y, w, h, 240, -100);
+			graphics2D.drawPolygon(x1, y1, 6);
 			break;
 		case OUTLINE_AND_FILLED_IN:
 			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
-			graphics2D.fillArc(x, y, w, h, 240, -100);
+			graphics2D.fillPolygon(x1, y1, 6);
 			graphics2D.setStroke(new BasicStroke(5));
 			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
-			graphics2D.drawArc(x, y, w, h, 240, -100);
+			graphics2D.drawPolygon(x1, y1, 6);
 			break;
 		default:
 			throw new Error("Error in flipping shape.");
+
 		}
 	}
 
 	@Override
 	public void rotateShape() {
-		Graphics2D graphics2d = this.getPaintCanvas().getGraphics2D();
-		graphics2d.rotate(Math.toRadians(180), this.getStartPoint().getX(), this.getStartPoint().getY());
-		Calculations calc = new Calculations(this.getStartPoint(), this.getEndPoint());
 		Graphics2D graphics2D = this.getPaintCanvas().getGraphics2D();
+		graphics2d.rotate(Math.toRadians(70), this.getStartPoint().getX(), this.getStartPoint().getY());
+		int x = Math.min(startPoint.getX(), endPoint.getX());
+		int y = Math.min(startPoint.getY(), endPoint.getY());
+		int w = Math.abs(startPoint.getX() - endPoint.getX());
+		int h = Math.abs(startPoint.getY() - endPoint.getY());
+		int[] x1 = new int[] { x + w, x + (w / 2), x - (w / 2), x - w, x - (w / 2), x + (w / 2) };
+		int[] y1 = new int[] { y, y - h, y - h, y, y + h, y + h };
 		switch (this.shadingType) {
 		case FILLED_IN:
 			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
-			graphics2D.fillArc(calc.getX(), calc.getY(), calc.getx1(), calc.gety1(), -10, 45);
+			graphics2D.fillPolygon(x1, y1, 6);
 			break;
 		case OUTLINE:
 			graphics2D.setStroke(new BasicStroke(5));
 			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
-			graphics2D.drawArc(calc.getX(), calc.getY(), calc.getx1(), calc.gety1(), -10, 45);
+			graphics2D.drawPolygon(x1, y1, 6);
 			break;
 		case OUTLINE_AND_FILLED_IN:
 			graphics2D.setColor(colorMap.get(this.getPrimaryColor()));
-			graphics2D.fillRect(calc.getX(), calc.getY(), calc.getx1(), calc.gety1());
+			graphics2D.fillPolygon(x1, y1, 6);
 			graphics2D.setStroke(new BasicStroke(5));
 			graphics2D.setColor(colorMap.get(this.getSecondaryColor()));
-			graphics2D.drawArc(calc.getX(), calc.getY(), calc.getx1(), calc.gety1(), -10, 45);
+			graphics2D.drawPolygon(x1, y1, 6);
 			break;
 		default:
 			throw new Error("Error in rotating shape.");
-
 		}
-
 	}
+
 }

@@ -8,7 +8,7 @@ public class HexagonStrat implements IShape {
 	@Override
 	public CreateShape createShape(ShapeInfo info, PaintCanvas canvas) {
 		// TODO Auto-generated method stub
-		return null;
+        return new Hexagon(info,canvas);
 	}
 
 }

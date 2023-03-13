@@ -23,13 +23,13 @@ public class GroupCommand implements ICommandPattern, IUndoable {
 	int width;
 	int height;
 	int padding = 50;
-	
+
 	@Override
 	public void run() {
 		IIteratorList iterator = selectedShapes.getIteratorList();
 		while (iterator.Next()) {
 			CreateShape shape = iterator.obtainNext();
-			
+
 			int startX = shape.getStartPoint().getX();
 			int endX = shape.getEndPoint().getX();
 			int startY = shape.getStartPoint().getY();
@@ -42,14 +42,13 @@ public class GroupCommand implements ICommandPattern, IUndoable {
 
 			width = maxX - minX + padding;
 			height = maxY - minY + padding;
-			
+
 			group.addShape(shape);
 		}
 		IIteratorList iteratorList = group.getIteratorList();
 		while (iteratorList.Next()) {
 			CreateShape shape = iteratorList.obtainNext();
-
-			shape.graphics2d.setStroke(new BasicStroke(4.0f, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_ROUND, 10.0f,new float[] { 16.0f, 20.0f }, 0.0f));
+			shape.graphics2d.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0));
 			shape.graphics2d.drawRect(minX - padding / 2, minY - padding / 2, width, height);
 		}
 		URCommand.add(this);
@@ -62,12 +61,12 @@ public class GroupCommand implements ICommandPattern, IUndoable {
 			CreateShape shape = iterator.obtainNext();
 			master.groupRemove(shape);
 		}
-			
+
 	}
 
 	@Override
 	public void redo() {
 		run();
-		}
+	}
 
 }

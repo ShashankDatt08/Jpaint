@@ -8,7 +8,7 @@ public class TextStrat implements IShape {
 	@Override
 	public CreateShape createShape(ShapeInfo info, PaintCanvas canvas) {
 		// TODO Auto-generated method stub
-		return null;
+        return new Text(info,canvas);
 	}
 
 }

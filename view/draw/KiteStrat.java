@@ -8,7 +8,7 @@ public class KiteStrat implements IShape {
 	@Override
 	public CreateShape createShape(ShapeInfo info, PaintCanvas canvas) {
 		// TODO Auto-generated method stub
-		return null;
+        return new Kite(info,canvas);
 	}
 
 }
